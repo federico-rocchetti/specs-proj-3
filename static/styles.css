@@ -1,0 +1,9 @@
+.melon-image {
+    max-width: 300px;
+    max-height: 300px;
+}
+
+#melon-container {
+    display: flex;
+    flex-wrap: wrap;
+}

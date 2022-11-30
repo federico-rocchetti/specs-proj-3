@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 
-<body>
+<body class="body-all">
     <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Ubermelon</a>
@@ -14,6 +14,11 @@
                 <div class="navbar-nav">
                     <a class="nav-link" href="{{ url_for('all_melons') }}">All Melons</a>
                     <a class="nav-link" href="{{ url_for('cart') }}">Cart</a>
+                    {% if 'username' in session %}
+                        <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
+                    {% else %}
+                    <a class="nav-link" href="{{ url_for('login') }}">Log In</a>
+                    {% endif %}    
                 </div>
             </div>
         </div>
@@ -23,9 +28,9 @@
     {% for message in get_flashed_messages() %}
     <p class="alert alert-warning">{{ message }}</p>
     {% endfor %}
-    <!-- This is where the main content goes. -->
     {% block body %}
-        BODY OF PAGE GOES HERE VIA INHERITANCE
+        <h1 class="header-1-base">Welcome to Ubermelon!</h1>
+        <h2 class="header-2-base">Shop for your favorite melons from all over the world in one place.</h2>
     {% endblock %}
 
   </div>

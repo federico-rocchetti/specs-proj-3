@@ -9,9 +9,10 @@
 </head>
 <body>
     {% block body %}
+    <h1 class="header-1-base">All Melons</h1>
     <div id="melon-container">
         {% for melon in melon_list %}
-        <div class="card text-center">
+        <div id="melon-card-all" class="card text-center">
             <a href="{{ url_for('melon_details', melon_id=melon.melon_id) }}">
                 <h3>{{ melon.common_name }}</h3>
             </a>

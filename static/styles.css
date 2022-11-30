@@ -1,9 +1,59 @@
+* {
+    font-family: sans-serif;
+    /* background:rgb(245, 201, 201);
+    background-color: rgb(208, 243, 208); */
+}
+
+.header-1-base {
+    text-align: center;
+    background-color: rgb(208, 243, 208);
+    margin-bottom: 0px;
+}
+
+.header-2-base {
+    text-align: center;
+}
+
 .melon-image {
     max-width: 300px;
     max-height: 300px;
+    border-radius: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    width: 80%;
 }
 
 #melon-container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
+    background-color: rgb(208, 243, 208);
 }
+
+#melon-card-all {
+    border: solid;
+    border-width: 2px;
+    width: 350px;
+    height: 400px;
+    margin-bottom: 2.5px;
+    margin-top: 2.5px;
+    background-color: rgb(240, 248, 191);
+}
+
+#melon-card-individual {
+    border: solid;
+    border-width: 2px;
+    margin-bottom: 2.5px;
+    margin-top: 2.5px;
+    background-color: rgb(240, 248, 191);
+}
+
+.body-all {
+    background-color: rgb(208, 243, 208);
+}
+
+/* .btn {
+    margin: 5px;
+} */

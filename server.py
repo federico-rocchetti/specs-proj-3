@@ -1,10 +1,38 @@
 from flask import Flask, render_template, redirect, flash, request, session
 import jinja2
 from melons import get_all, find_melon
+from forms import LoginForm
+from customers import get_by_username
 
 app = Flask(__name__)
 app.secret_key = 'dev'
 app.jinja_env.undefined = jinja2.StrictUndefined
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm(request.form)
+
+    if form.validate_on_submit():
+        username = form.username.data
+        password = form.password.data
+
+        user = get_by_username(username)
+
+        if not user or user['password'] != password:
+            flash("Invalid username or password. Please try again.")
+            return redirect('/login')
+        
+        session['username'] = user['username']
+        flash("Logged in successfull.")
+        return redirect('/melons') 
+           
+    return render_template("login.html", form=form)
+
+@app.route('/logout')
+def logout():
+    del session['username']
+    flash("Logged Out.")
+    return redirect('/login')
 
 @app.route('/')
 def home():
@@ -23,6 +51,9 @@ def melon_details(melon_id):
 @app.route('/add_to_cart/<melon_id>')
 def add_to_cart(melon_id):
 
+    if 'username' not in session:
+        return redirect('/login')
+
     if 'cart' not in session:
         session['cart'] = {}
     cart = session['cart']
@@ -37,6 +68,10 @@ def add_to_cart(melon_id):
 
 @app.route('/cart')
 def cart():
+
+    if 'username' not in session:
+        return redirect('/login')
+
     order_total = 0
     cart_melons = []
 
@@ -60,6 +95,10 @@ def empty_cart():
     session["cart"] = {}
 
     return redirect("/cart")
+
+@app.errorhandler(404)
+def error_page(e):
+    return render_template("404.html")
 
 if __name__ == '__main__':
     app.env = "development"

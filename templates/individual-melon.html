@@ -11,7 +11,7 @@
     <h1>Individual Melon</h1>
     {% block body %}
     <div id="melon-container">
-        <div class="card text-center">
+        <div id="melon-card-individual" class="card text-center">
             <h3>{{ melon.common_name }}</h3>
             <img class="melon-image" src="{{ melon.image_url }}">
             <h4>Price per unit: {{ melon.price_str() }}</h4>
@@ -22,8 +22,8 @@
                 {% else %}
                     <li>Warning! This melon has seeds</li>
                 {% endif %}
+                <a class="btn btn-primary" href="{{ url_for('add_to_cart', melon_id=melon.melon_id) }}">Add to Cart</a>
             </ul>
-            <a class="btn btn-primary" href="{{ url_for('add_to_cart', melon_id=melon.melon_id) }}">Add to Cart</a>
         </div>
     </div>
     {% endblock %}

@@ -1,7 +1,5 @@
 * {
     font-family: sans-serif;
-    /* background:rgb(245, 201, 201);
-    background-color: rgb(208, 243, 208); */
 }
 
 .header-1-base {
@@ -53,7 +51,3 @@
 .body-all {
     background-color: rgb(208, 243, 208);
 }
-
-/* .btn {
-    margin: 5px;
-} */
